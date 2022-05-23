@@ -14,6 +14,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/enquiry.css" />
+  <link rel="stylesheet" href="css/p-enquiry.css" />
 
   <!-- JavaScript -->
   <script src="javascript/popup.js" defer></script>
@@ -68,220 +69,266 @@
     <!-- Write here -->
 
     <!-- Admission Form -->
-    <section class="admission-form">
-      <div class="container-lg">
-        <div class="form-heading">
-          <h2>Enquiry Form</h2>
-          <div class="line"></div>
-        </div>
+    <div class="data-sub">
+      <?php
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "admission";
 
-        <form action="enquiry.php" method="POST">
-          <div class="personal-info">
-            <h3 class="form-section-heading">personal information</h3>
+        $conn = mysqli_connect($servername, $username, $password, $database);
 
-            <div class="form-one-line-container">
-              <div class="form-el-container">
-                <label for="name">Name</label>
-                <div class="name-container">
-                  <input type="text" id="name" autocomplete="off" placeholder="FIRSTNAME" name="fname" />
-                  <input type="text" id="fname" autocomplete="off" placeholder="MIDDLENAME" name="mname" />
-                  <input type="text" id="lname" autocomplete="off" placeholder="LASTNAME" name="lname" />
-                </div>
-              </div>
-            </div>
+        if ($conn) {
 
-            <div class="form-one-line-container">
-              <div class="form-el-container">
-                <label for="address">Address</label>
-                <input type="text" id="address" name="add">
-              </div>
-            </div>
+          $fname = $_POST['fname'];
+          $mname = $_POST['mname'];
+          $lname = $_POST['lname'];
+          $eadd = $_POST['add'];
+          $ecity = $_POST['city'];
+          $estate = $_POST['state'];
+          $epin = $_POST['pin'];
+          $emobile = $_POST['mobile'];
+          $ecell = $_POST['cell'];
+          $eemail = $_POST['email'];
+          @$egender = $_POST['gender'];
+          $edob = $_POST['dob'];
+          $eaadhar = $_POST['aadhar'];
+          @$ecourse = $_POST['course'];
+          $edes = $_POST['des'];
 
-            <div class="form-one-line-container">
-              <div class="form-el-container">
-                <label for="city">City</label>
-                <input type="text" id="city" autocomplete="off" name="city">
-              </div>
-              <div class="form-el-container">
-                <label for="state">State</label>
-                <input type="text" id="state" autocomplete="off" name="state">
-              </div>
-              <div class="form-el-container">
-                <label for="pin">Pin</label>
-                <input type="text" id="pin" autocomplete="off" name="pin">
-              </div>
-            </div>
+          $data = "INSERT INTO enquiry_form (fname, mname, lname, eadd, ecity, estate, epin, emobile, ecell, eemail, egender, edob, eaadhar, ecourse, edes) VALUES ('$fname','$mname','$lname','$eadd','$ecity','$estate','$epin','$emobile','$ecell','$eemail','$egender','$edob','$eaadhar','$ecourse','$edes')";
 
-            <div class="form-one-line-container">
-              <div class="form-el-container">
-                <label for="mobile">Mobile</label>
-                <input type="tel" autocomplete="off" id="mobile" name="mobile" />
-              </div>
-              <div class="form-el-container">
-                <label for="cell">Cellphone</label>
-                <input type="tel" autocomplete="off" id="cell" name="cell" />
-              </div>
-              <div class="form-el-container">
-                <label for="email">Email</label>
-                <input type="email" autocomplete="off" id="email" name="email" />
-              </div>
-            </div>
+          $insert = mysqli_query($conn, $data);
 
-            <div class="form-one-line-container">
-              <div class="form-el-container">
-                <label for="gender">Gender</label>
-                <div class="gender">
-                  <input type="radio" name="gender" id="male" value="male" />
-                  <label for="male">Male</label>
-                  <input type="radio" name="gender" id="female" value="female" />
-                  <label for="female">Female</label>
-                  <input type="radio" name="gender" id="other" value="other" />
-                  <label for="other">Other</label>
-                </div>
-              </div>
-              <div class="form-el-container">
-                <label for="dob">DOB</label>
-                <input type="date" id="dob" autocomplete="off" name="dob" />
-              </div>
-              <div class="form-el-container">
-                <label for="aadhar">Aadhar</label>
-                <input type="text" id="aadhar" autocomplete="off" name="aadhar">
-              </div>
-            </div>
-          </div>
-
-          <div class="enquiry-info">
-            <h3 class="form-section-heading">enquiry information</h3>
-
-            <div class="form-one-line-container">
-              <div class="form-el-container">
-                <label for="course">Course of Interest</label>
-                <select name="course-interest" id="course">
-                  <option value="">--Select Course--</option>
-                  <option value="BCA">BCA</option>
-                  <option value="BBA">BBA</option>
-                  <option value="MCA">MCA</option>
-                  <option value="MBA">MBA</option>
-                  <option value="DIT">DIT</option>
-                  <option value="PGDCA">PGDCA</option>
-                  <option value="DBM">DBM</option>
-                  <option value="M.com">M.Com</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-one-line-container">
-              <div class="form-el-container">
-                <label for="description">Description</label>
-                <textarea name="des" id="" cols="30" rows="5"></textarea>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="form-btn-container">
-            <button type="reset" class="gray-btn form-btn form-btn-red">Clear</button>
-            <button type="submit" class="gray-btn form-btn">Submit</button>
-          </div>
-        </form>
-        <div class="data-sub">
-          <?php
-          $servername = "localhost";
-          $username = "root";
-          $password = "";
-          $database = "admission";
-
-          $conn = mysqli_connect($servername, $username, $password, $database);
-
-          if ($conn) {
-
-            $fname = $_POST['fname'];
-            $mname = $_POST['mname'];
-            $lname = $_POST['lname'];
-            $eadd = $_POST['add'];
-            $ecity = $_POST['city'];
-            $estate = $_POST['state'];
-            $epin = $_POST['pin'];
-            $emobile = $_POST['mobile'];
-            $ecell = $_POST['cell'];
-            $eemail = $_POST['email'];
-            @$egender = $_POST['gender'];
-            $edob = $_POST['dob'];
-            $eaadhar = $_POST['aadhar'];
-            @$ecourse = $_POST['course'];
-            $edes = $_POST['des'];
-
-            $data = "INSERT INTO enquiry_form (fname, mname, lname, eadd, ecity, estate, epin, emobile, ecell, eemail, egender, edob, eaadhar, ecourse, edes) VALUES ('$fname','$mname','$lname','$eadd','$ecity','$estate','$epin','$emobile','$ecell','$eemail','$egender','$edob','$eaadhar','$ecourse','$edes')";
-
-            $insert = mysqli_query($conn, $data);
-
-            if ($insert) {
-              echo "Data is now recorded successfully...... :)";
-            } else {
-              die("\n Data is not recorded successfully...... :(") . mysqli_error($conn);
-            }
+          if ($insert) {
+            echo "Success! Your data has been stored.";
           } else {
-            die("\n Connection was not done successfully...... :(");
+            die("\n Data is not recorded successfully...... :(") . mysqli_error($conn);
           }
-          ?>
+        } else {
+          die("\n Connection was not done successfully...... :(");
+        }
+      }
+      ?>
+    </div>
+  </div>
+  <section class="admission-form">
+    <div class="container-lg">
+      <div class="form-heading">
+        <h2>Enquiry Form</h2>
+        <div class="line"></div>
+      </div>
+
+      <form action="enquiry.php" method="POST">
+        <div class="personal-info">
+          <h3 class="form-section-heading">personal information</h3>
+
+          <div class="form-one-line-container">
+            <div class="form-el-container">
+              <label for="name">Name</label>
+              <div class="name-container">
+                <input type="text" id="name" autocomplete="off" placeholder="FIRSTNAME" name="fname" />
+                <input type="text" id="fname" autocomplete="off" placeholder="MIDDLENAME" name="mname" />
+                <input type="text" id="lname" autocomplete="off" placeholder="LASTNAME" name="lname" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-one-line-container">
+            <div class="form-el-container">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="add">
+            </div>
+          </div>
+
+          <div class="form-one-line-container">
+            <div class="form-el-container">
+              <label for="city">City</label>
+              <input type="text" id="city" autocomplete="off" name="city">
+            </div>
+            <div class="form-el-container">
+              <label for="state">State</label>
+              <input type="text" id="state" autocomplete="off" name="state">
+            </div>
+            <div class="form-el-container">
+              <label for="pin">Pin</label>
+              <input type="text" id="pin" autocomplete="off" name="pin">
+            </div>
+          </div>
+
+          <div class="form-one-line-container">
+            <div class="form-el-container">
+              <label for="mobile">Mobile</label>
+              <input type="tel" autocomplete="off" id="mobile" name="mobile" />
+            </div>
+            <div class="form-el-container">
+              <label for="cell">Cellphone</label>
+              <input type="tel" autocomplete="off" id="cell" name="cell" />
+            </div>
+            <div class="form-el-container">
+              <label for="email">Email</label>
+              <input type="email" autocomplete="off" id="email" name="email" />
+            </div>
+          </div>
+
+          <div class="form-one-line-container">
+            <div class="form-el-container">
+              <label for="gender">Gender</label>
+              <div class="gender">
+                <input type="radio" name="gender" id="male" value="male" />
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="female" />
+                <label for="female">Female</label>
+                <input type="radio" name="gender" id="other" value="other" />
+                <label for="other">Other</label>
+              </div>
+            </div>
+            <div class="form-el-container">
+              <label for="dob">DOB</label>
+              <input type="date" id="dob" autocomplete="off" name="dob" />
+            </div>
+            <div class="form-el-container">
+              <label for="aadhar">Aadhar</label>
+              <input type="text" id="aadhar" autocomplete="off" name="aadhar">
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!--Footer Part-->
-    <footer>
-      <div class="container-lg footer-container">
-        <section class="map">
-          <h3 class="heading">Maps</h3>
-          <div class="map-container">
-            <a href="https://www.google.com/maps/place/V.P.+Institute+of+Management+Studies+%26+Research/@16.841187,74.6210434,14.75z/data=!4m5!3m4!1s0x3bc1225e591c9b77:0x281f0db03fdc162d!8m2!3d16.8401904!4d74.6194138" target="blank">
-              <img src="src/map.png" alt="" />
-            </a>
-          </div>
-        </section>
+        <div class="enquiry-info">
+          <h3 class="form-section-heading">enquiry information</h3>
 
-        <section class="courses-footer">
-          <h3 class="heading">Courses</h3>
-          <div class="courses-list">
-            <a href="">Bachelors's in Computer Application</a>
-            <a href="">Master of Computer Applications</a>
-            <a href="">Post Graduate Diploma in Computer Application</a>
-            <a href="">Bachelor's degree in Business Administration</a>
-            <a href="">Master of Business Administration</a>
-            <a href="">Diploma in Business Management</a>
-          </div>
-        </section>
-
-        <section class="contact-info">
-          <h3 class="heading">contact info</h3>
-          <div class="contact-container">
-            <div class="adress">
-              <span>Address</span><br />
-              Sangli-Miraj Road,Near Bharati Hospital,Wanlesswadi
-              Sangli-416414.
-            </div>
-            <div class="phone">
-              <span>Phone</span><br />
-              +91 0233-2212427 <br />
-              +91 0233-2211467
-            </div>
-            <div class="email">
-              <span>Email</span><br />
-              <a href="mailto:admin@vpimsr.edu.in">admin@vpimsr.edu.in</a>
+          <div class="form-one-line-container">
+            <div class="form-el-container">
+              <label for="course">Course of Interest</label>
+              <select name="course-interest" id="course">
+                <option value="">--Select Course--</option>
+                <option value="BCA">BCA</option>
+                <option value="BBA">BBA</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+                <option value="DIT">DIT</option>
+                <option value="PGDCA">PGDCA</option>
+                <option value="DBM">DBM</option>
+                <option value="M.com">M.Com</option>
+              </select>
             </div>
           </div>
-        </section>
-      </div>
 
-      <hr class="hor-line" />
+          <div class="form-one-line-container">
+            <div class="form-el-container">
+              <label for="description">Description</label>
+              <textarea name="des" id="" cols="30" rows="5"></textarea>
+            </div>
+          </div>
 
-      <div class="container-lg copyright-container">
-        <div id="copyright">
-          <div>Copyright &copy; 2022 VPIMSR</div>
-          <div>Powered by VPIMSR</div>
         </div>
+
+        <div class="form-btn-container">
+          <button type="reset" class="gray-btn form-btn form-btn-red">Clear</button>
+          <button type="submit" class="gray-btn form-btn">Submit</button>
+        </div>
+        <!-- <div class="data-sub"> -->
+        <!-- <?php
+              // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              //   $servername = "localhost";
+              //   $username = "root";
+              //   $password = "";
+              //   $database = "admission";
+
+              //   $conn = mysqli_connect($servername, $username, $password, $database);
+
+              //   if ($conn) {
+
+              //     $fname = $_POST['fname'];
+              //     $mname = $_POST['mname'];
+              //     $lname = $_POST['lname'];
+              //     $eadd = $_POST['add'];
+              //     $ecity = $_POST['city'];
+              //     $estate = $_POST['state'];
+              //     $epin = $_POST['pin'];
+              //     $emobile = $_POST['mobile'];
+              //     $ecell = $_POST['cell'];
+              //     $eemail = $_POST['email'];
+              //     @$egender = $_POST['gender'];
+              //     $edob = $_POST['dob'];
+              //     $eaadhar = $_POST['aadhar'];
+              //     @$ecourse = $_POST['course'];
+              //     $edes = $_POST['des'];
+
+              //     $data = "INSERT INTO enquiry_form (fname, mname, lname, eadd, ecity, estate, epin, emobile, ecell, eemail, egender, edob, eaadhar, ecourse, edes) VALUES ('$fname','$mname','$lname','$eadd','$ecity','$estate','$epin','$emobile','$ecell','$eemail','$egender','$edob','$eaadhar','$ecourse','$edes')";
+
+              //     $insert = mysqli_query($conn, $data);
+
+              //     if ($insert) {
+              //       echo "Success! Your data has been stored.";
+              //     } else {
+              //       die("\n Data is not recorded successfully...... :(") . mysqli_error($conn);
+              //     }
+              //   } else {
+              //     die("\n Connection was not done successfully...... :(");
+              //   }
+              // }
+              ?>
+          </div> -->
+      </form>
+    </div>
+  </section>
+
+  <!--Footer Part-->
+  <footer>
+    <div class="container-lg footer-container">
+      <section class="map">
+        <h3 class="heading">Maps</h3>
+        <div class="map-container">
+          <a href="https://www.google.com/maps/place/V.P.+Institute+of+Management+Studies+%26+Research/@16.841187,74.6210434,14.75z/data=!4m5!3m4!1s0x3bc1225e591c9b77:0x281f0db03fdc162d!8m2!3d16.8401904!4d74.6194138" target="blank">
+            <img src="src/map.png" alt="" />
+          </a>
+        </div>
+      </section>
+
+      <section class="courses-footer">
+        <h3 class="heading">Courses</h3>
+        <div class="courses-list">
+          <a href="">Bachelors's in Computer Application</a>
+          <a href="">Master of Computer Applications</a>
+          <a href="">Post Graduate Diploma in Computer Application</a>
+          <a href="">Bachelor's degree in Business Administration</a>
+          <a href="">Master of Business Administration</a>
+          <a href="">Diploma in Business Management</a>
+        </div>
+      </section>
+
+      <section class="contact-info">
+        <h3 class="heading">contact info</h3>
+        <div class="contact-container">
+          <div class="adress">
+            <span>Address</span><br />
+            Sangli-Miraj Road,Near Bharati Hospital,Wanlesswadi
+            Sangli-416414.
+          </div>
+          <div class="phone">
+            <span>Phone</span><br />
+            +91 0233-2212427 <br />
+            +91 0233-2211467
+          </div>
+          <div class="email">
+            <span>Email</span><br />
+            <a href="mailto:admin@vpimsr.edu.in">admin@vpimsr.edu.in</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <hr class="hor-line" />
+
+    <div class="container-lg copyright-container">
+      <div id="copyright">
+        <div>Copyright &copy; 2022 VPIMSR</div>
+        <div>Powered by VPIMSR</div>
       </div>
-    </footer>
+    </div>
+  </footer>
   </div>
 
   <!-- Bootstrap (Do not touch) -->
