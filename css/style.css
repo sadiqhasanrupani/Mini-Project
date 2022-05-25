@@ -483,14 +483,6 @@ footer .heading {
 
 /* course-content */
 
-@font-face{
-  font-family: Roboto-bold;
-  src: url(../font/segoe-ui-4-cufonfonts/Segoe\ UI\ Bold.ttf);
-}
-@font-face{
-  font-family: Roboto-medium;
-  src: url(../font/Roboto/Roboto-Medium.ttf);
-}
 .course-container{
   min-height: 20.8vh;
   width: 100%;
@@ -537,7 +529,7 @@ footer .heading {
   position: relative;
   height: 10vh;
   width: 100%;
-  font-family: 'Roboto-bold';
+  font-weight: 600;
   font-size: xx-large;
   z-index: 0;
   display: flex;
@@ -577,11 +569,9 @@ footer .heading {
   width: 100vw;
 }
 .main{
-  font-family: 'Roboto';
   margin-bottom: 10%;
 }
 .course-h2{
-  font-family: 'Roboto-Medium';
   font-size: xx-large;
   color: black;
   display: flex;
@@ -591,7 +581,7 @@ footer .heading {
   text-align: center;
   margin: calc(10%/2);
   padding-bottom: 10px;
-  font-weight: 900;
+  font-weight: 700;
 }
 .course-h2::after{
   content: '';
@@ -601,7 +591,6 @@ footer .heading {
   border-bottom: 3px solid var(--gold);
 }
 .course-grid{
-  font-family: 'Roboto-Bold';
   width: 50%;
   height: 50%;
   display: grid;
@@ -639,10 +628,9 @@ footer .heading {
 }
 .course-des{
   position: relative;
-  top: 25px;
-  font-family: 'Roboto-medium';
+  top: 20px;
+  font-weight: 500;
   padding: 2.5% 2% 0% 0%;
-  font-weight: 400;
 }
 .manage-img{
   cursor: pointer;
@@ -664,7 +652,6 @@ footer .heading {
 }
 .item-style:hover{
   color: var(--gray);
-  font-weight: bolder;
   box-shadow: 10px 10px 25px 5px rgb(165, 165, 165);
 }
 
