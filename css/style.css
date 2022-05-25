@@ -615,7 +615,7 @@ footer .heading {
   border-radius: 5px;
   height: 60%;
   width: 100%;
-  visibility: visible;
+  /* visibility: visible; */
 }
 .comp-img-2{
   height: 53vh;
@@ -623,13 +623,13 @@ footer .heading {
 .year{
   padding: 2% 0% 0% 0%;
   position: relative;
-  grid-column: 1;;
+  grid-column: 1;
   font-weight: 900;
   font-size: 12px;
 }
 .course-nm{
   position:relative;
-  top: 15px;
+  /* top: 15px; */
   padding: 0% 2% 0% 0%;
   font-size: 25px;
   font-weight: bolder;
@@ -637,7 +637,8 @@ footer .heading {
 }
 .course-des{
   position: relative;
-  top: 20px;
+  /* top: 20px; */
+  margin-bottom: 5%;
   font-weight: 500;
   padding: 2.5% 2% 0% 0%;
 }
@@ -666,7 +667,7 @@ footer .heading {
 
 .reg-btn{
   position: relative;
-  top: 50px;
+  /* top: 50px; */
   padding: 8px 40px 8px 40px;
   background: var(--gray);
   color: white;
