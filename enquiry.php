@@ -113,13 +113,15 @@
 
           $insert = mysqli_query($conn, $data);
 
+          $err = mysqli_error($conn);
+          
           if ($insert) {
             echo "Success! Your data has been stored.";
           } else {
             die("\n Data is not recorded successfully...... :(") . mysqli_error($conn);
           }
         } else {
-          die("\n Connection was not done successfully...... :(");
+          die("\n Connection was not done successfully ---> $err");
         }
       }
       ?>
